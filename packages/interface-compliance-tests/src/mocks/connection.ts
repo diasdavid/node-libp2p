@@ -100,9 +100,7 @@ class MockConnection implements Connection {
 
   async close (options?: AbortOptions): Promise<void> {
     this.status = 'closing'
-    await Promise.all(
-      this.streams.map(async s => s.close(options))
-    )
+    await this.muxer.close()
     await this.maConn.close()
     this.status = 'closed'
     this.timeline.close = Date.now()
@@ -110,9 +108,7 @@ class MockConnection implements Connection {
 
   abort (err: Error): void {
     this.status = 'closing'
-    this.streams.forEach(s => {
-      s.abort(err)
-    })
+    this.muxer.abort(err)
     this.maConn.abort(err)
     this.status = 'closed'
     this.timeline.close = Date.now()
