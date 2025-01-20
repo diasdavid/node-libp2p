@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/libp2p/js-libp2p/compare/auto-tls-v1.0.4...auto-tls-v1.0.5) (2025-01-20)
+
+
+### Bug Fixes
+
+* add toStringTag for auto-tls ([#2914](https://github.com/libp2p/js-libp2p/issues/2914)) ([06fc82d](https://github.com/libp2p/js-libp2p/commit/06fc82da85bdd4fdba5bba797135c7e8b2b10c53))
+
 ## [1.0.4](https://github.com/libp2p/js-libp2p/compare/auto-tls-v1.0.3...auto-tls-v1.0.4) (2025-01-13)
 
 
