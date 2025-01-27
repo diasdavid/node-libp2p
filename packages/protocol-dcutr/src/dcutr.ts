@@ -192,10 +192,13 @@ export class DefaultDCUtRService implements Startable {
         // https://github.com/libp2p/specs/blob/master/relay/DCUtR.md#the-protocol
 
         this.log('B dialing', multiaddrs)
-        // Upon expiry of the timer, B dials the address to A.
+        // Upon expiry of the timer, B dials the address to A and acts as the
+        // multistream-select server
         const conn = await this.connectionManager.openConnection(multiaddrs, {
           signal: options.signal,
-          priority: DCUTR_DIAL_PRIORITY
+          priority: DCUTR_DIAL_PRIORITY,
+          force: true,
+          initiator: false
         })
 
         this.log('DCUtR to %p succeeded to address %a, closing relayed connection', relayedConnection.remotePeer, conn.remoteAddr)

@@ -122,6 +122,7 @@ export interface UpgraderOptions<ConnectionUpgradeEvents extends ProgressEvent =
   skipProtection?: boolean
   muxerFactory?: StreamMuxerFactory
   limits?: ConnectionLimits
+  initiator?: boolean
 }
 
 export type InboundConnectionUpgradeEvents =

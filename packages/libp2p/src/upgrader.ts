@@ -228,7 +228,14 @@ export class DefaultUpgrader implements Upgrader {
         await this.shouldBlockConnection('denyOutboundConnection', remotePeerId, maConn)
       }
 
-      return await this._performUpgrade(maConn, 'outbound', opts)
+      let direction: 'inbound' | 'outbound' = 'outbound'
+
+      // act as the multistream-select server if we are not to be the initiator
+      if (opts.initiator === false) {
+        direction = 'inbound'
+      }
+
+      return await this._performUpgrade(maConn, direction, opts)
     } catch (err) {
       this.metrics.errors?.increment({
         outbound: true

@@ -20,6 +20,18 @@ export interface OpenConnectionOptions extends AbortOptions, ProgressOptions<Ope
    * @default false
    */
   force?: boolean
+
+  /**
+   * By default a newly opened outgoing connection operates in initiator mode
+   * during negotiation of encryption/muxing protocols using multistream-select.
+   *
+   * In some cases such as when the dialer is trying to achieve TCP Simultaneous
+   * Connect using the DCUtR protocol, it may wish to act in responder mode, if
+   * so pass `false` here.
+   *
+   * @default true
+   */
+  initiator?: boolean
 }
 
 export interface ConnectionManager {
