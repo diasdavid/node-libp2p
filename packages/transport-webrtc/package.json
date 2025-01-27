@@ -63,7 +63,7 @@
     "it-pushable": "^3.2.3",
     "it-stream-types": "^2.0.2",
     "multiformats": "^13.3.1",
-    "node-datachannel": "^0.11.0",
+    "node-datachannel": "^0.23.0",
     "p-defer": "^4.0.1",
     "p-event": "^6.0.1",
     "p-timeout": "^6.1.3",
