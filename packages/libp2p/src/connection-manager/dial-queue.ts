@@ -137,11 +137,12 @@ export class DialQueue {
    */
   async dial (peerIdOrMultiaddr: PeerId | Multiaddr | Multiaddr[], options: OpenConnectionOptions = {}): Promise<Connection> {
     const { peerId, multiaddrs } = getPeerAddress(peerIdOrMultiaddr)
+    const { force } = options
 
     // make sure we don't have an existing connection to any of the addresses we
     // are about to dial
     const existingConnection = Array.from(this.connections.values()).flat().find(conn => {
-      if (options.force === true) {
+      if (force === true) {
         return false
       }
 
@@ -265,6 +266,30 @@ export class DialQueue {
               })
             } catch (err: any) {
               this.log.error('could not update last dial failure key for %p', peerId, err)
+            }
+
+            const { remotePeer } = conn
+
+            // make sure we don't have an existing connection to the address we dialed
+            const existingConnection = Array.from(this.connections.values()).flat().find(_conn => {
+              if (force === true) {
+                return false
+              }
+
+              if (_conn.remotePeer.equals(remotePeer) && _conn !== conn) {
+                return true
+              }
+
+              return false
+            })
+
+            // return existing, open connection to peer if equal or better limits
+            if (existingConnection?.status === 'open' && (existingConnection?.limits == null || conn?.limits != null)) {
+              this.log('already connected to %a', existingConnection.remoteAddr)
+              options?.onProgress?.(new CustomProgressEvent('dial-queue:already-connected'))
+              this.log('closing duplicate connection to %p', remotePeer)
+              await conn.close()
+              return existingConnection
             }
 
             return conn

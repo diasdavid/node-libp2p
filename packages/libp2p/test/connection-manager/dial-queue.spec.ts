@@ -3,6 +3,7 @@
 import { generateKeyPair } from '@libp2p/crypto/keys'
 import { NotFoundError } from '@libp2p/interface'
 import { peerLogger } from '@libp2p/logger'
+import { PeerMap } from '@libp2p/peer-collections'
 import { peerIdFromPrivateKey } from '@libp2p/peer-id'
 import { multiaddr, resolvers } from '@multiformats/multiaddr'
 import { WebRTC } from '@multiformats/multiaddr-matcher'
@@ -325,6 +326,76 @@ describe('dial queue', () => {
 
     dialer = new DialQueue(components)
     await expect(dialer.dial(remotePeer)).to.eventually.equal(connection)
+  })
+
+  it('should return existing connection when dialing a multiaddr without a peer id', async () => {
+    const remotePeer = peerIdFromPrivateKey(await generateKeyPair('Ed25519'))
+    const ip = multiaddr('/ip4/123.123.123.123')
+    const addr1 = ip.encapsulate('/tcp/123')
+    const addr2 = ip.encapsulate('/tcp/321')
+
+    const existingConnection = stubInterface<Connection>({
+      limits: {
+        bytes: 100n
+      },
+      remotePeer,
+      remoteAddr: addr1.encapsulate(`/p2p/${remotePeer}`),
+      status: 'open'
+    })
+
+    const newConnection = stubInterface<Connection>({
+      limits: {
+        bytes: 100n
+      },
+      remotePeer,
+      remoteAddr: addr2.encapsulate(`/p2p/${remotePeer}`),
+      status: 'open'
+    })
+
+    const connections = new PeerMap<Connection[]>()
+    connections.set(remotePeer, [existingConnection])
+
+    components.transportManager.dialTransportForMultiaddr.callsFake(ma => {
+      return stubInterface<Transport>()
+    })
+    components.transportManager.dial.callsFake(async (ma, opts = {}) => newConnection)
+    dialer = new DialQueue(components, { connections })
+
+    await expect(dialer.dial(addr2)).to.eventually.equal(existingConnection)
+  })
+
+  it('should return new connection when existing connection to same peer is worse', async () => {
+    const remotePeer = peerIdFromPrivateKey(await generateKeyPair('Ed25519'))
+    const ip = multiaddr('/ip4/123.123.123.123')
+    const addr1 = ip.encapsulate('/tcp/123')
+    const addr2 = ip.encapsulate('/tcp/321')
+
+    const existingConnection = stubInterface<Connection>({
+      limits: {
+        bytes: 100n
+      },
+      remotePeer,
+      remoteAddr: addr1.encapsulate(`/p2p/${remotePeer}`),
+      status: 'open'
+    })
+
+    const newConnection = stubInterface<Connection>({
+      limits: undefined,
+      remotePeer,
+      remoteAddr: addr2.encapsulate(`/p2p/${remotePeer}`),
+      status: 'open'
+    })
+
+    const connections = new PeerMap<Connection[]>()
+    connections.set(remotePeer, [existingConnection])
+
+    components.transportManager.dialTransportForMultiaddr.callsFake(ma => {
+      return stubInterface<Transport>()
+    })
+    components.transportManager.dial.callsFake(async (ma, opts = {}) => newConnection)
+    dialer = new DialQueue(components, { connections })
+
+    await expect(dialer.dial(addr2)).to.eventually.equal(newConnection)
   })
 
   it('should respect user dial signal over default timeout if it is passed', async () => {
