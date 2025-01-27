@@ -45,7 +45,7 @@ export function generateKey (): Uint8ArrayKeyPair {
   // @ts-expect-error node types are missing jwk as a format
   const privateKeyRaw = uint8arrayFromString(key.privateKey.d, 'base64url')
   // @ts-expect-error node types are missing jwk as a format
-  const publicKeyRaw = uint8arrayFromString(key.privateKey.x, 'base64url')
+  const publicKeyRaw = uint8arrayFromString(key.publicKey.x, 'base64url')
 
   return {
     privateKey: uint8arrayConcat([privateKeyRaw, publicKeyRaw], privateKeyRaw.byteLength + publicKeyRaw.byteLength),
