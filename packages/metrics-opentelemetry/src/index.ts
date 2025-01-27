@@ -34,6 +34,9 @@
  */
 
 import { InvalidParametersError, serviceCapabilities } from '@libp2p/interface'
+import { isAsyncGenerator } from '@libp2p/utils/is-async-generator'
+import { isGenerator } from '@libp2p/utils/is-generator'
+import { isPromise } from '@libp2p/utils/is-promise'
 import { trace, metrics, context, SpanStatusCode } from '@opentelemetry/api'
 import each from 'it-foreach'
 import { OpenTelemetryCounterGroup } from './counter-group.js'
@@ -438,10 +441,6 @@ export function openTelemetryMetrics (init: OpenTelemetryMetricsInit = {}): (com
   return (components: OpenTelemetryComponents) => new OpenTelemetryMetrics(components, init)
 }
 
-function isPromise <T = any> (obj?: any): obj is Promise<T> {
-  return typeof obj?.then === 'function'
-}
-
 async function wrapPromise (promise: Promise<any>, span: Span, attributes: TraceAttributes, options?: TraceFunctionOptions<any, any>): Promise<any> {
   return promise
     .then(res => {
@@ -456,10 +455,6 @@ async function wrapPromise (promise: Promise<any>, span: Span, attributes: Trace
     .finally(() => {
       span.end()
     })
-}
-
-function isGenerator (obj?: any): obj is Generator {
-  return obj?.[Symbol.iterator] != null
 }
 
 function wrapGenerator (gen: Generator, span: Span, attributes: TraceAttributes, options?: TraceGeneratorFunctionOptions<any, any, any>): Generator {
@@ -500,10 +495,6 @@ function wrapGenerator (gen: Generator, span: Span, attributes: TraceAttributes,
   }
 
   return wrapped
-}
-
-function isAsyncGenerator (obj?: any): obj is AsyncGenerator {
-  return obj?.[Symbol.asyncIterator] != null
 }
 
 function wrapAsyncGenerator (gen: AsyncGenerator, span: Span, attributes: TraceAttributes, options?: TraceGeneratorFunctionOptions<any, any, any>): AsyncGenerator {

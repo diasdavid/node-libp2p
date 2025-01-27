@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "@libp2p/interface": "^2.4.0",
+    "@libp2p/utils": "^6.3.1",
     "@opentelemetry/api": "^1.9.0",
     "it-foreach": "^2.1.1",
     "it-stream-types": "^2.0.2"
