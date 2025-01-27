@@ -1,6 +1,6 @@
 {
   "name": "@libp2p/config",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Helper functions to make dealing with libp2p config easier",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/libp2p/js-libp2p/tree/main/packages/config#readme",

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/libp2p/js-libp2p/compare/config-v1.0.1...config-v1.0.2) (2025-01-20)
+
+
+### Documentation
+
+* update config docs ([#2917](https://github.com/libp2p/js-libp2p/issues/2917)) ([8582cc2](https://github.com/libp2p/js-libp2p/commit/8582cc24965b8636e466a259ed9f65a23e511ec6))
+
 ## [1.0.1](https://github.com/libp2p/js-libp2p/compare/config-v1.0.0...config-v1.0.1) (2025-01-07)
 
 

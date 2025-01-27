@@ -1,6 +1,6 @@
 {
   "name": "@libp2p/auto-tls",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Automatically acquire a <peerId>.libp2p.direct TLS certificate",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/libp2p/js-libp2p/tree/main/packages/auto-tls#readme",
