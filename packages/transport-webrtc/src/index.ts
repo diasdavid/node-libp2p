@@ -247,6 +247,25 @@ export interface DataChannelOptions {
   openTimeout?: number
 }
 
+/**
+ * PEM format server certificate and private key
+ */
+export interface TransportCertificate {
+  /**
+   * The private key for the certificate in PEM format
+   */
+  privateKey: string
+  /**
+   * PEM format certificate
+   */
+  pem: string
+
+  /**
+   * The hash of the certificate
+   */
+  certhash: string
+}
+
 export type { WebRTCTransportDirectInit, WebRTCDirectTransportComponents }
 
 function webRTCDirect (init?: WebRTCTransportDirectInit): (components: WebRTCDirectTransportComponents) => Transport {

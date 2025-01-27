@@ -191,8 +191,13 @@ export default (common: TestSetup<TransportTestFixtures>): void => {
         throw new Error('Oh noes!')
       }
 
-      await expect(dialer.dial(dialAddrs[0])).to.eventually.be.rejected
-        .with.property('name', 'EncryptionFailedError')
+      // transports with their own muxers/encryption will perform the upgrade
+      // after the connection has been established (e.g. peer ids have been
+      // exchanged) so perform the dial and wait for the remote to attempt the
+      // upgrade - if it fails the listener should close the underlying
+      // connection which should remove the it from the dialer's connection map
+      await dialer.dial(dialAddrs[0]).catch(() => {})
+      await delay(1000)
 
       expect(dialer.getConnections().filter(conn => {
         return dialMultiaddrMatcher.exactMatch(conn.remoteAddr)
