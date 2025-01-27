@@ -438,7 +438,7 @@ export function openTelemetryMetrics (init: OpenTelemetryMetricsInit = {}): (com
   return (components: OpenTelemetryComponents) => new OpenTelemetryMetrics(components, init)
 }
 
-function isPromise <T = any> (obj?: any): obj is Promise<T> {
+export function isPromise <T = any> (obj?: any): obj is Promise<T> {
   return typeof obj?.then === 'function'
 }
 
@@ -458,8 +458,13 @@ async function wrapPromise (promise: Promise<any>, span: Span, attributes: Trace
     })
 }
 
-function isGenerator (obj?: any): obj is Generator {
-  return obj?.[Symbol.iterator] != null
+export function isGenerator (obj: unknown): obj is Generator {
+  if (obj == null) return false
+  const iterator = (obj as { [Symbol.iterator]?: unknown })?.[Symbol.iterator]
+  if (typeof iterator !== 'function') return false
+
+  const instance = obj as { next?: unknown }
+  return typeof instance.next === 'function'
 }
 
 function wrapGenerator (gen: Generator, span: Span, attributes: TraceAttributes, options?: TraceGeneratorFunctionOptions<any, any, any>): Generator {
@@ -502,8 +507,15 @@ function wrapGenerator (gen: Generator, span: Span, attributes: TraceAttributes,
   return wrapped
 }
 
-function isAsyncGenerator (obj?: any): obj is AsyncGenerator {
-  return obj?.[Symbol.asyncIterator] != null
+export function isAsyncGenerator (obj: unknown): obj is AsyncGenerator {
+  if (obj == null) return false
+  const asyncIterator = (obj as { [Symbol.asyncIterator]?: unknown })?.[
+    Symbol.asyncIterator
+  ]
+  if (typeof asyncIterator !== 'function') return false
+
+  const instance = obj as { next?: unknown }
+  return typeof instance.next === 'function'
 }
 
 function wrapAsyncGenerator (gen: AsyncGenerator, span: Span, attributes: TraceAttributes, options?: TraceGeneratorFunctionOptions<any, any, any>): AsyncGenerator {
