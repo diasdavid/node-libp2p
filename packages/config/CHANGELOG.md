@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.3](https://github.com/libp2p/js-libp2p/compare/config-v1.0.2...config-v1.0.3) (2025-02-06)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @libp2p/crypto bumped from ^5.0.10 to ^5.0.11
+    * @libp2p/interface bumped from ^2.4.1 to ^2.5.0
+    * @libp2p/keychain bumped from ^5.0.13 to ^5.0.14
+    * @libp2p/logger bumped from ^5.1.7 to ^5.1.8
+
 ## [1.0.2](https://github.com/libp2p/js-libp2p/compare/config-v1.0.1...config-v1.0.2) (2025-02-03)
 
 

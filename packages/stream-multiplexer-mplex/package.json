@@ -1,6 +1,6 @@
 {
   "name": "@libp2p/mplex",
-  "version": "11.0.19",
+  "version": "11.0.20",
   "description": "JavaScript implementation of https://github.com/libp2p/mplex",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/libp2p/js-libp2p/tree/main/packages/stream-multiplexer-mplex#readme",
@@ -62,8 +62,8 @@
     "test:electron-main": "aegir test -t electron-main"
   },
   "dependencies": {
-    "@libp2p/interface": "^2.4.1",
-    "@libp2p/utils": "^6.5.0",
+    "@libp2p/interface": "^2.5.0",
+    "@libp2p/utils": "^6.5.1",
     "it-pipe": "^3.0.1",
     "it-pushable": "^3.2.3",
     "it-stream-types": "^2.0.2",
@@ -72,8 +72,8 @@
     "uint8arrays": "^5.1.0"
   },
   "devDependencies": {
-    "@libp2p/interface-compliance-tests": "^6.2.5",
-    "@libp2p/logger": "^5.1.7",
+    "@libp2p/interface-compliance-tests": "^6.2.6",
+    "@libp2p/logger": "^5.1.8",
     "aegir": "^45.0.5",
     "benchmark": "^2.1.4",
     "cborg": "^4.2.6",

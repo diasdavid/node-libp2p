@@ -1,6 +1,6 @@
 {
   "name": "@libp2p/devtools-metrics",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Collect libp2p metrics and send them to browser DevTools",
   "author": "",
   "license": "Apache-2.0 OR MIT",
@@ -68,11 +68,11 @@
     "test:firefox": "aegir test -t browser --browser firefox"
   },
   "dependencies": {
-    "@libp2p/interface": "^2.4.1",
-    "@libp2p/interface-internal": "^2.2.4",
-    "@libp2p/logger": "^5.1.7",
-    "@libp2p/peer-id": "^5.0.11",
-    "@libp2p/simple-metrics": "^1.3.1",
+    "@libp2p/interface": "^2.5.0",
+    "@libp2p/interface-internal": "^2.3.0",
+    "@libp2p/logger": "^5.1.8",
+    "@libp2p/peer-id": "^5.0.12",
+    "@libp2p/simple-metrics": "^1.3.2",
     "@multiformats/multiaddr": "^12.3.3",
     "cborg": "^4.2.6",
     "it-pipe": "^3.0.1",
@@ -82,7 +82,7 @@
     "progress-events": "^1.0.1"
   },
   "devDependencies": {
-    "@libp2p/crypto": "^5.0.10",
+    "@libp2p/crypto": "^5.0.11",
     "aegir": "^45.0.5",
     "sinon-ts": "^2.0.0"
   },
