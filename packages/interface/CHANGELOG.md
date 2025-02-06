@@ -5,6 +5,18 @@
 
 * add start/stop events to libp2p interface ([#407](https://github.com/libp2p/js-libp2p-interfaces/issues/407)) ([016c1e8](https://github.com/libp2p/js-libp2p-interfaces/commit/016c1e82b060c93c80546cd8c493ec6e6c97cbec))
 
+## [2.5.0](https://github.com/libp2p/js-libp2p/compare/interface-v2.4.1...interface-v2.5.0) (2025-02-06)
+
+
+### Features
+
+* allow overriding stream handlers ([#2945](https://github.com/libp2p/js-libp2p/issues/2945)) ([21088c5](https://github.com/libp2p/js-libp2p/commit/21088c5195df2c3c371fc28bb824f5f84760bf12)), closes [#2928](https://github.com/libp2p/js-libp2p/issues/2928)
+
+
+### Bug Fixes
+
+* include platform in user agent ([#2942](https://github.com/libp2p/js-libp2p/issues/2942)) ([96f14e4](https://github.com/libp2p/js-libp2p/commit/96f14e429eac84d02504c4b97f183511c8af2add))
+
 ## [2.4.1](https://github.com/libp2p/js-libp2p/compare/interface-v2.4.0...interface-v2.4.1) (2025-02-03)
 
 

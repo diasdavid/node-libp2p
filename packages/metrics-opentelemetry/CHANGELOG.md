@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.0.3](https://github.com/libp2p/js-libp2p/compare/opentelemetry-metrics-v1.0.2...opentelemetry-metrics-v1.0.3) (2025-02-06)
+
+
+### Bug Fixes
+
+* include platform in user agent ([#2942](https://github.com/libp2p/js-libp2p/issues/2942)) ([96f14e4](https://github.com/libp2p/js-libp2p/commit/96f14e429eac84d02504c4b97f183511c8af2add))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @libp2p/interface bumped from ^2.4.1 to ^2.5.0
+    * @libp2p/utils bumped from ^6.5.0 to ^6.5.1
+
 ## [1.0.2](https://github.com/libp2p/js-libp2p/compare/opentelemetry-metrics-v1.0.1...opentelemetry-metrics-v1.0.2) (2025-02-04)
 
 

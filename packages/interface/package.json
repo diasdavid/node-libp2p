@@ -1,6 +1,6 @@
 {
   "name": "@libp2p/interface",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "description": "The interface implemented by a libp2p node",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/libp2p/js-libp2p/tree/main/packages/interface#readme",

@@ -1,6 +1,6 @@
 {
   "name": "@libp2p/webtransport",
-  "version": "5.0.24",
+  "version": "5.0.25",
   "description": "JavaScript implementation of the WebTransport module that libp2p uses and that implements the interface-transport spec",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/libp2p/js-libp2p/tree/main/packages/transport-webtransport#readme",
@@ -51,9 +51,9 @@
   },
   "dependencies": {
     "@chainsafe/libp2p-noise": "^16.0.0",
-    "@libp2p/interface": "^2.4.1",
-    "@libp2p/peer-id": "^5.0.11",
-    "@libp2p/utils": "^6.5.0",
+    "@libp2p/interface": "^2.5.0",
+    "@libp2p/peer-id": "^5.0.12",
+    "@libp2p/utils": "^6.5.1",
     "@multiformats/multiaddr": "^12.3.3",
     "@multiformats/multiaddr-matcher": "^1.6.0",
     "it-stream-types": "^2.0.2",
@@ -64,17 +64,17 @@
     "uint8arrays": "^5.1.0"
   },
   "devDependencies": {
-    "@libp2p/crypto": "^5.0.10",
+    "@libp2p/crypto": "^5.0.11",
     "@libp2p/daemon-client": "^9.0.4",
-    "@libp2p/logger": "^5.1.7",
-    "@libp2p/ping": "^2.0.17",
+    "@libp2p/logger": "^5.1.8",
+    "@libp2p/ping": "^2.0.18",
     "@noble/hashes": "^1.6.1",
     "aegir": "^45.0.5",
     "execa": "^9.5.1",
     "go-libp2p": "^1.6.0",
     "it-map": "^3.1.1",
     "it-to-buffer": "^4.0.7",
-    "libp2p": "^2.5.2",
+    "libp2p": "^2.6.0",
     "p-defer": "^4.0.1",
     "p-wait-for": "^5.0.2"
   },
