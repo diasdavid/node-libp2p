@@ -39,7 +39,7 @@
   "scripts": {
     "generate": "protons src/private-to-private/pb/message.proto src/pb/message.proto",
     "build": "aegir build",
-    "test": "aegir test -t node -t browser",
+    "test": "aegir test -t node -t browser -- --exit",
     "test:node": "aegir test -t node --cov -- --exit",
     "test:chrome": "aegir test -t browser --cov",
     "test:firefox": "aegir test -t browser -- --browser firefox",
@@ -51,6 +51,7 @@
     "doc-check": "aegir doc-check"
   },
   "dependencies": {
+    "@chainsafe/is-ip": "^2.0.2",
     "@chainsafe/libp2p-noise": "^16.0.0",
     "@libp2p/interface": "^2.4.1",
     "@libp2p/interface-internal": "^2.2.4",
@@ -58,20 +59,27 @@
     "@libp2p/utils": "^6.5.0",
     "@multiformats/multiaddr": "^12.3.3",
     "@multiformats/multiaddr-matcher": "^1.6.0",
+    "@peculiar/webcrypto": "^1.5.0",
+    "@peculiar/x509": "^1.11.0",
+    "any-signal": "^4.1.1",
     "detect-browser": "^5.3.0",
+    "get-port": "^7.1.0",
     "it-length-prefixed": "^9.1.0",
     "it-protobuf-stream": "^1.1.5",
     "it-pushable": "^3.2.3",
     "it-stream-types": "^2.0.2",
     "multiformats": "^13.3.1",
-    "node-datachannel": "^0.11.0",
+    "node-datachannel": "^0.24.0",
     "p-defer": "^4.0.1",
     "p-event": "^6.0.1",
     "p-timeout": "^6.1.3",
+    "p-wait-for": "^5.0.2",
     "progress-events": "^1.0.1",
     "protons-runtime": "^5.5.0",
+    "race-event": "^1.3.0",
     "race-signal": "^1.1.0",
     "react-native-webrtc": "^124.0.4",
+    "stun": "^2.1.0",
     "uint8-varint": "^2.0.4",
     "uint8arraylist": "^2.4.8",
     "uint8arrays": "^5.1.0"
@@ -91,7 +99,10 @@
     "sinon-ts": "^2.0.0"
   },
   "browser": {
-    "./dist/src/webrtc/index.js": "./dist/src/webrtc/index.browser.js"
+    "./dist/src/webrtc/index.js": "./dist/src/webrtc/index.browser.js",
+    "./dist/src/private-to-public/listener.js": "./dist/src/private-to-public/listener.browser.js",
+    "./dist/src/private-to-public/utils/get-rtcpeerconnection.js": "./dist/src/private-to-public/utils/get-rtcpeerconnection.browser.js",
+    "node:net": false
   },
   "react-native": {
     "./dist/src/webrtc/index.js": "./dist/src/webrtc/index.react-native.js"

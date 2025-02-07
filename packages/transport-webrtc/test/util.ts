@@ -1,5 +1,5 @@
 import * as lengthPrefixed from 'it-length-prefixed'
-import { Message } from '../src/pb/message.js'
+import { Message } from '../src/private-to-public/pb/message.js'
 
 /**
  * simulates receiving a FIN_ACK on the passed datachannel
